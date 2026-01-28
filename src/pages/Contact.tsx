@@ -42,7 +42,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Adresse',
-      content: '123 Avenue Gastronomique\n75008 Paris, France',
+      content: 'Zogbadjè, Cité la Victoire \n Abomey-Calavi, Bénin',
       action: {
         label: 'Itinéraire',
         href: 'https://maps.google.com/?q=123+Avenue+Gastronomique+Paris',
@@ -51,25 +51,25 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Téléphone',
-      content: '+33 1 23 45 67 89',
+      content: '+2290167109440',
       action: {
         label: 'Appeler',
-        href: 'tel:+33123456789',
+        href: 'tel:+2290167109440',
       },
     },
     {
       icon: Mail,
       title: 'Email',
-      content: 'bonjour@lamaison.fr',
+      content: 'akakpogodwin@gmail.com',
       action: {
         label: 'Envoyer un Email',
-        href: 'mailto:bonjour@lamaison.fr',
+        href: 'mailto:akakpogodwin@gmail.com',
       },
     },
     {
       icon: Clock,
       title: 'Horaires',
-      content: 'Mar - Dim : 12h00 - 22h30\nFermé le lundi',
+      content: 'Lun - Dim : 08h00 - 23h30 \n Disponible pour vous acceuillir',
     },
   ];
 

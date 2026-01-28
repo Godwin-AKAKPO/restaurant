@@ -185,9 +185,9 @@ export const Navbar = () => {
                 >
                   <Link
                     to="/reservation"
-                    className="block w-full py-4 text-center btn-primary rounded-lg font-medium"
+                    className="block w-full py-3 text-center btn-primary rounded-lg font-medium"
                   >
-                    Réserver une Table
+                    Passer une commande
                   </Link>
                 </motion.div>
               </div>

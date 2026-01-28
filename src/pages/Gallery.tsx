@@ -13,7 +13,7 @@ import gallery3 from '@/assets/gallery-3.jpg';
 import heroImage from '@/assets/hero-restaurant.jpg';
 import starterImg from '@/assets/starter.jpg';
 import chefImage from '@/assets/chef.jpg';
-import aboutHero from '@/assets/about-hero.jpg';
+import aboutHero from '@/assets/hero.png';
 import drinkImg from '@/assets/drink.jpg';
 
 const Gallery = () => {

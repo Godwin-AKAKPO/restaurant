@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Layout } from '@/components/layout/Layout';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { SectionTitle } from '@/components/ui/SectionTitle';
-import aboutHero from '@/assets/about-hero.jpg';
+import aboutHero from '@/assets/hero.png';
 import chefImage from '@/assets/chef.jpg';
 import gallery1 from '@/assets/gallery-1.jpg';
 

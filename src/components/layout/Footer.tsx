@@ -76,20 +76,20 @@ export const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                 <span className="text-espresso-foreground/70">
-                  123 Avenue Gastronomique<br />
-                  75008 Paris, France
+                  Zogbadjè, Cité la Victoire<br />
+                  Abomey-Calavi, Bénin
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary flex-shrink-0" />
-                <a href="tel:+33123456789" className="text-espresso-foreground/70 hover:text-primary transition-colors">
-                  +33 1 23 45 67 89
+                <a href="tel:+2290167109440" className="text-espresso-foreground/70 hover:text-primary transition-colors">
+                  +2290167109440
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary flex-shrink-0" />
-                <a href="mailto:bonjour@lamaison.fr" className="text-espresso-foreground/70 hover:text-primary transition-colors">
-                  bonjour@lamaison.fr
+                <a href="mouyiwaakakpo@gmail.com" className="text-espresso-foreground/70 hover:text-primary transition-colors">
+                  mouyiwaakakpo@gmail.com
                 </a>
               </li>
             </ul>
@@ -118,9 +118,7 @@ export const Footer = () => {
                   <p>Mar - Dim : 19h00 - 22h30</p>
                 </div>
               </li>
-              <li className="text-espresso-foreground/50 text-sm mt-4">
-                Fermé le lundi
-              </li>
+
             </ul>
           </motion.div>
         </div>
@@ -135,10 +133,6 @@ export const Footer = () => {
           <p className="text-espresso-foreground/50 text-sm">
             © {new Date().getFullYear()} La Maison. Tous droits réservés.
           </p>
-          <div className="flex gap-6 text-sm text-espresso-foreground/50">
-            <a href="#" className="hover:text-primary transition-colors">Politique de Confidentialité</a>
-            <a href="#" className="hover:text-primary transition-colors">Mentions Légales</a>
-          </div>
         </motion.div>
       </div>
     </footer>
