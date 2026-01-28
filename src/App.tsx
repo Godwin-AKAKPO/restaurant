@@ -9,7 +9,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Menu from "./pages/Menu";
 import Gallery from "./pages/Gallery";
-import Reservation from "./pages/Reservation";
+import Order from "./pages/Reservation";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -25,7 +25,7 @@ const AnimatedRoutes = () => {
         <Route path="/about" element={<About />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/reservation" element={<Reservation />} />
+        <Route path="/reservation" element={<Order />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

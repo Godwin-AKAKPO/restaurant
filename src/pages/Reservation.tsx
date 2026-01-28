@@ -1,44 +1,64 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, Users, CheckCircle } from 'lucide-react';
+import { CheckCircle, Trash2, Plus } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import gallery1 from '@/assets/gallery-1.jpg';
 
-const Reservation = () => {
+interface OrderItem {
+  id: string;
+  dishName: string;
+  quantity: number;
+}
+
+const Order = () => {
   const { toast } = useToast();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [orderItems, setOrderItems] = useState<OrderItem[]>([
+    { id: '1', dishName: '', quantity: 1 }
+  ]);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     date: '',
     time: '',
-    guests: '',
-    occasion: '',
-    requests: '',
+    guests: '2',
+    specifications: '',
   });
 
-  const timeSlots = [
-    '12h00', '12h30', '13h00', '13h30', '14h00',
-    '19h00', '19h30', '20h00', '20h30', '21h00', '21h30', '22h00'
-  ];
+  const handleAddDish = () => {
+    const newId = (Math.max(...orderItems.map(item => parseInt(item.id)), 0) + 1).toString();
+    setOrderItems([...orderItems, { id: newId, dishName: '', quantity: 1 }]);
+  };
 
-  const guestOptions = ['1', '2', '3', '4', '5', '6', '7', '8', '10+'];
-  
-  const occasions = ['Anniversaire', 'Fête', 'Dîner d\'affaires', 'Soirée en amoureux', 'Célébration', 'Autre'];
+  const handleRemoveDish = (id: string) => {
+    if (orderItems.length > 1) {
+      setOrderItems(orderItems.filter(item => item.id !== id));
+    } else {
+      toast({
+        title: 'Au moins un plat est requis',
+        variant: 'destructive',
+      });
+    }
+  };
+
+  const handleDishChange = (id: string, field: 'dishName' | 'quantity', value: string) => {
+    setOrderItems(orderItems.map(item =>
+      item.id === id
+        ? { ...item, [field]: field === 'quantity' ? parseInt(value) || 1 : value }
+        : item
+    ));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.phone || !formData.date || !formData.time || !formData.guests) {
+
+    if (!formData.name || !formData.email || !formData.phone || !formData.date || !formData.time) {
       toast({
         title: 'Veuillez remplir tous les champs obligatoires',
         variant: 'destructive',
@@ -46,11 +66,18 @@ const Reservation = () => {
       return;
     }
 
-    // Simulate form submission
+    if (orderItems.some(item => !item.dishName)) {
+      toast({
+        title: 'Veuillez remplir tous les noms de plats',
+        variant: 'destructive',
+      });
+      return;
+    }
+
     setIsSubmitted(true);
     toast({
-      title: 'Demande de Réservation Reçue',
-      description: 'Nous confirmerons votre réservation sous peu.',
+      title: 'Commande Reçue',
+      description: 'Merci, nous traiterons votre commande rapidement.',
     });
   };
 
@@ -77,22 +104,37 @@ const Reservation = () => {
                 <CheckCircle className="w-10 h-10 text-primary" />
               </motion.div>
               <h2 className="font-display text-3xl md:text-4xl font-semibold mb-4">
-                Réservation Reçue
+                Commande Reçue
               </h2>
               <p className="text-muted-foreground mb-8">
-                Merci, {formData.name} ! Nous avons bien reçu votre demande de réservation pour le{' '}
-                <span className="text-foreground font-medium">{formData.date}</span> à{' '}
-                <span className="text-foreground font-medium">{formData.time}</span> pour{' '}
-                <span className="text-foreground font-medium">{formData.guests}</span> {formData.guests === '1' ? 'personne' : 'personnes'}.
+                Merci, {formData.name} ! Votre commande a bien été enregistrée.
               </p>
+              <div className="text-muted-foreground text-sm mb-8">
+                <p className="font-semibold mb-2">Plats commandés:</p>
+                {orderItems.map(item => (
+                  <p key={item.id}>{item.dishName} x{item.quantity}</p>
+                ))}
+              </div>
               <p className="text-muted-foreground text-sm mb-8">
-                Un email de confirmation sera envoyé à <span className="text-foreground">{formData.email}</span> sous peu.
+                Un email de confirmation sera envoyé à <span className="text-foreground">{formData.email}</span>.
               </p>
               <Button
-                onClick={() => setIsSubmitted(false)}
+                onClick={() => {
+                  setIsSubmitted(false);
+                  setFormData({
+                    name: '',
+                    email: '',
+                    phone: '',
+                    date: '',
+                    time: '',
+                    guests: '2',
+                    specifications: '',
+                  });
+                  setOrderItems([{ id: '1', dishName: '', quantity: 1 }]);
+                }}
                 className="btn-primary px-8"
               >
-                Faire une Autre Réservation
+                Passer une Nouvelle Commande
               </Button>
             </motion.div>
           </AnimatedSection>
@@ -103,7 +145,6 @@ const Reservation = () => {
 
   return (
     <Layout>
-      {/* Hero Section */}
       <section className="relative pt-32 pb-16 bg-espresso">
         <div className="container-custom px-4">
           <motion.div
@@ -113,208 +154,144 @@ const Reservation = () => {
             className="text-center"
           >
             <span className="text-primary font-medium text-sm uppercase tracking-[0.2em] mb-4 inline-block">
-              Rejoignez-Nous
+              Passer une Commande
             </span>
             <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-semibold text-espresso-foreground mb-6">
-              Réserver une Table
+              Commandez Maintenant
             </h1>
             <p className="text-espresso-foreground/70 max-w-2xl mx-auto">
-              Commencez votre voyage culinaire avec nous. Réservez votre table et laissez-nous 
-              créer une expérience gastronomique inoubliable pour vous.
+              Profitez de nos délicieuses spécialités culinaires. Commandez vos plats favoris et savourez la qualité de notre cuisine.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Reservation Form */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-            {/* Form */}
+          <div className="max-w-2xl mx-auto">
             <AnimatedSection>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Nom Complet *</Label>
-                    <Input
-                      id="name"
-                      placeholder="Jean Dupont"
-                      value={formData.name}
-                      onChange={(e) => handleInputChange('name', e.target.value)}
-                      className="bg-cream border-border"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Adresse Email *</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="jean@exemple.fr"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
-                      className="bg-cream border-border"
-                    />
-                  </div>
+                <h2 className="font-display text-2xl font-semibold mb-8">Vos Informations</h2>
+
+                <div className="space-y-2">
+                  <Label htmlFor="name">Nom Complet *</Label>
+                  <Input
+                    id="name"
+                    placeholder="Jean Dupont"
+                    value={formData.name}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    className="bg-white border-border"
+                  />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="phone">Numéro de Téléphone *</Label>
+                  <Label htmlFor="email">Adresse Email *</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="jean@exemple.fr"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    className="bg-white border-border"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Téléphone *</Label>
                   <Input
                     id="phone"
                     type="tel"
                     placeholder="+33 1 23 45 67 89"
                     value={formData.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
-                    className="bg-cream border-border"
+                    className="bg-white border-border"
                   />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="date" className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-primary" />
-                      Date *
-                    </Label>
+                    <Label htmlFor="date">Date *</Label>
                     <Input
                       id="date"
                       type="date"
                       value={formData.date}
                       onChange={(e) => handleInputChange('date', e.target.value)}
-                      min={new Date().toISOString().split('T')[0]}
-                      className="bg-cream border-border"
+                      className="bg-white border-border"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-primary" />
-                      Heure *
-                    </Label>
-                    <Select
+                    <Label htmlFor="time">Heure *</Label>
+                    <Input
+                      id="time"
+                      type="time"
                       value={formData.time}
-                      onValueChange={(value) => handleInputChange('time', value)}
-                    >
-                      <SelectTrigger className="bg-cream border-border">
-                        <SelectValue placeholder="Choisir l'heure" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {timeSlots.map((time) => (
-                          <SelectItem key={time} value={time}>
-                            {time}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-primary" />
-                      Convives *
-                    </Label>
-                    <Select
-                      value={formData.guests}
-                      onValueChange={(value) => handleInputChange('guests', value)}
-                    >
-                      <SelectTrigger className="bg-cream border-border">
-                        <SelectValue placeholder="Nombre" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {guestOptions.map((num) => (
-                          <SelectItem key={num} value={num}>
-                            {num} {num === '1' ? 'Personne' : 'Personnes'}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                      onChange={(e) => handleInputChange('time', e.target.value)}
+                      className="bg-white border-border"
+                    />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label>Occasion (Optionnel)</Label>
-                  <Select
-                    value={formData.occasion}
-                    onValueChange={(value) => handleInputChange('occasion', value)}
+                <div className="space-y-4">
+                  <h3 className="font-display text-lg font-semibold">Vos Plats *</h3>
+                  {orderItems.map((item) => (
+                    <div key={item.id} className="flex gap-3 items-end">
+                      <div className="flex-1 space-y-2">
+                        <Label htmlFor={`dish-${item.id}`}>Nom du Plat</Label>
+                        <Input
+                          id={`dish-${item.id}`}
+                          placeholder="Ex: Steak Frites, Pizza Margherita..."
+                          value={item.dishName}
+                          onChange={(e) => handleDishChange(item.id, 'dishName', e.target.value)}
+                          className="bg-white border-border"
+                        />
+                      </div>
+                      <div className="w-20 space-y-2">
+                        <Label htmlFor={`qty-${item.id}`}>Quantité</Label>
+                        <Input
+                          id={`qty-${item.id}`}
+                          type="number"
+                          min="1"
+                          value={item.quantity}
+                          onChange={(e) => handleDishChange(item.id, 'quantity', e.target.value)}
+                          className="bg-white border-border"
+                        />
+                      </div>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => handleRemoveDish(item.id)}
+                      >
+                        <Trash2 className="w-5 h-5" />
+                      </Button>
+                    </div>
+                  ))}
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={handleAddDish}
+                    className="w-full"
                   >
-                    <SelectTrigger className="bg-cream border-border">
-                      <SelectValue placeholder="Choisir l'occasion" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {occasions.map((occasion) => (
-                        <SelectItem key={occasion} value={occasion}>
-                          {occasion}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                    <Plus className="w-4 h-4 mr-2" />
+                    Ajouter un Plat
+                  </Button>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="requests">Demandes Spéciales (Optionnel)</Label>
+                  <Label htmlFor="specifications">Précisions / Spécifications</Label>
                   <Textarea
-                    id="requests"
-                    placeholder="Allergies, restrictions alimentaires, préférences de placement..."
-                    value={formData.requests}
-                    onChange={(e) => handleInputChange('requests', e.target.value)}
-                    className="bg-cream border-border min-h-[120px]"
+                    id="specifications"
+                    placeholder="Allergies, restrictions alimentaires, cuisson, préférences..."
+                    value={formData.specifications}
+                    onChange={(e) => handleInputChange('specifications', e.target.value)}
+                    className="bg-white border-border min-h-[100px]"
                   />
                 </div>
 
                 <Button type="submit" className="btn-primary w-full py-6 text-sm uppercase tracking-widest">
-                  Demander une Réservation
+                  Confirmer la Commande
                 </Button>
-
-                <p className="text-muted-foreground text-sm text-center">
-                  Pour les groupes de plus de 10 personnes, veuillez nous contacter directement au{' '}
-                  <a href="tel:+33123456789" className="text-primary hover:underline">
-                    +33 1 23 45 67 89
-                  </a>
-                </p>
               </form>
-            </AnimatedSection>
-
-            {/* Info */}
-            <AnimatedSection delay={0.2}>
-              <div className="space-y-8">
-                <div className="aspect-[4/3] rounded-lg overflow-hidden">
-                  <img
-                    src={gallery1}
-                    alt="Salle de La Maison"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="font-display text-xl mb-2">Horaires d'Ouverture</h3>
-                    <div className="space-y-2 text-muted-foreground">
-                      <p className="flex justify-between">
-                        <span>Déjeuner (Mar - Dim)</span>
-                        <span>12h00 - 14h30</span>
-                      </p>
-                      <p className="flex justify-between">
-                        <span>Dîner (Mar - Dim)</span>
-                        <span>19h00 - 22h30</span>
-                      </p>
-                      <p className="text-sm italic">Fermé le lundi</p>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="font-display text-xl mb-2">Code Vestimentaire</h3>
-                    <p className="text-muted-foreground">
-                      Tenue élégante décontractée. Nous demandons à nos convives de ne pas porter 
-                      de vêtements de sport, shorts ou tongs.
-                    </p>
-                  </div>
-
-                  <div>
-                    <h3 className="font-display text-xl mb-2">Politique d'Annulation</h3>
-                    <p className="text-muted-foreground">
-                      Veuillez nous prévenir au moins 24 heures à l'avance si vous devez 
-                      annuler ou modifier votre réservation.
-                    </p>
-                  </div>
-                </div>
-              </div>
             </AnimatedSection>
           </div>
         </div>
@@ -323,4 +300,4 @@ const Reservation = () => {
   );
 };
 
-export default Reservation;
+export default Order;
