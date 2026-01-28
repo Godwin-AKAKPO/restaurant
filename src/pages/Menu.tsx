@@ -30,33 +30,33 @@ const Menu = () => {
 
   const menuItems: Record<MenuCategory, MenuItem[]> = {
     starters: [
-      { name: 'Foie Gras Poêlé', description: 'Poire caramélisée, réduction de balsamique vieilli, toast de brioche', price: '38', image: dish1 },
-      { name: 'Tartare de Thon', description: 'Avocat, sésame, wontons croustillants, ponzu aux agrumes', price: '26', image: starterImg },
-      { name: 'Burrata Caprese', description: 'Tomates anciennes, huile de basilic, balsamique vieilli', price: '22' },
-      { name: 'Soupe à l\'Oignon Gratinée', description: 'Croûton au gruyère, oignons caramélisés, consommé de bœuf', price: '16' },
-      { name: 'Huîtres Rockefeller', description: 'Épinards, Pernod, gratin au parmesan (6 pièces)', price: '32' },
+      { name: 'Accras de Morue', description: 'Beignets de morue, sauce piquante, oignon rouge, citron', price: '2500', image: dish1 },
+      { name: 'Gâteau de Maïs', description: 'Maïs frais râpé, oignon, crevettes, sauce tomate relevée', price: '2000', image: starterImg },
+      { name: 'Salade de Betteraves', description: 'Betteraves cuites, cacahuètes grillées, oignon, sauce arachide', price: '1800', image: dish2 },
+      { name: 'Soupe à l\'Arachide', description: 'Bouillon riche à la pâte d\'arachide, viande de bœuf, légumes', price: '1500', image: dish3 },
+      { name: 'Alloco et Sauce Tomate', description: 'Bananes plantains frites, sauce tomate piquante, ail frais', price: '1200', image: dish4 },
     ],
     mains: [
-      { name: 'Homard au Beurre', description: 'Risotto au safran, émulsion corail, micro-pousses', price: '78', image: dish2 },
-      { name: 'Filet de Bœuf Wagyu', description: 'Jus à la truffe, purée de pommes de terre, légumes de saison', price: '89', image: dish4 },
-      { name: 'Magret de Canard', description: 'Réduction aux cerises, pomme fondante, jeunes pousses', price: '52' },
-      { name: 'Bar du Chili', description: 'Glaçage miso, bok choy, sauce gingembre-ciboule', price: '56' },
-      { name: 'Carré d\'Agneau', description: 'Croûte aux herbes, ratatouille, jus au romarin', price: '62' },
-      { name: 'Risotto à la Truffe', description: 'Riz arborio, parmesan, copeaux de truffe noire', price: '42' },
+      { name: 'Pounded Yam et Okra', description: 'Igname pilée, sauce okra à la viande de poisson, oignon, épices', price: '6500', image: dish1 },
+      { name: 'Pâte d\'Arachide Béninoise', description: 'Sauce riche à la pâte d\'arachide, viande tendre, riz blanc', price: '5500', image: dish2 },
+      { name: 'Riz Jollof Bénin', description: 'Riz cuit au jus de tomate, viande fumée, épices West-Africaines', price: '4500', image: dish3 },
+      { name: 'Fufu Igname et Sauce Tomate', description: 'Igname écrasée, sauce tomate riche, viande braisée, légumes', price: '5000', image: dish4 },
+      { name: 'Gari et Sauce d\'Arachide', description: 'Semoule de manioc, sauce cacahuète onctueuse, poisson fumé', price: '4200', image: starterImg },
+      { name: 'Kedjenou de Poulet', description: 'Poulet braisé à l\'étouffée, légumes locaux, sauce riche et savoureuse', price: '5500', image: dish1 },
     ],
     desserts: [
-      { name: 'Sphère Chocolat Valrhona', description: 'Caramel au beurre salé, feuille d\'or, praliné noisette', price: '20', image: dish3 },
-      { name: 'Crème Brûlée', description: 'Vanille de Madagascar, croûte de sucre caramélisé', price: '14' },
-      { name: 'Tarte Tatin', description: 'Pommes caramélisées, glace vanille, calvados', price: '16' },
-      { name: 'Plateau de Fromages', description: 'Fromages artisanaux, miel en rayon, compote de fruits, crackers', price: '26' },
-      { name: 'Mille-Feuille', description: 'Pâte feuilletée, crème pâtissière, fruits frais', price: '17' },
+      { name: 'Beignets de Banane', description: 'Bananes plantains frites, sucre caramélisé, cannelle, miel', price: '1500', image: dish2 },
+      { name: 'Flan à la Noix de Coco', description: 'Crème coco, caramel riche, noix de coco râpée', price: '1200', image: dish3 },
+      { name: 'Gâteau de Maïs Sucré', description: 'Maïs frais moulu, sucre, amande, présentation festive', price: '1300', image: dish4 },
+      { name: 'Assiette de Fruits Tropicaux', description: 'Mangue, papaye, ananas, banane frais, citron vert', price: '2200', image: starterImg },
+      { name: 'Bouillie de Sorgho Sucrée', description: 'Sorgho cuit sucré, lait concentré, vanille, noix de muscade', price: '1000', image: dish1 },
     ],
     drinks: [
-      { name: 'Signature La Maison', description: 'Cognac vieilli, miel, bitter à l\'orange, champagne', price: '22', image: drinkImg },
-      { name: 'Espresso Martini', description: 'Vodka, espresso frais, liqueur de café', price: '16' },
-      { name: 'French 75', description: 'Gin, citron, champagne, sucre', price: '18' },
-      { name: 'Accord Mets et Vins', description: 'Sélection du sommelier par plat', price: '68' },
-      { name: 'Mocktail du Jardin', description: 'Herbes fraîches, agrumes, eau pétillante', price: '10' },
+      { name: 'Jus de Bissap Frais', description: 'Oseille rouge glacée, sucre, glaçons, saveur traditionnelle', price: '1200', image: drinkImg },
+      { name: 'Jus de Gingembre Épicé', description: 'Gingembre frais râpé, citron, sucre, eau glacée', price: '1000', image: dish2 },
+      { name: 'Jus de Tamarin', description: 'Tamarin frais, sucre, eau glacée, boisson traditionnelle', price: '800', image: dish3 },
+      { name: 'Vins Sélectionnés d\'Afrique', description: 'Sélection du sommelier vins africains premium par plat', price: '4500', image: dish4 },
+      { name: 'Mocktail Tropical', description: 'Fruits tropicaux frais, gingembre, citron, eau pétillante', price: '800', image: starterImg },
     ],
   };
 
@@ -72,14 +72,14 @@ const Menu = () => {
             className="text-center"
           >
             <span className="text-primary font-medium text-sm uppercase tracking-[0.2em] mb-4 inline-block">
-              Excellence Culinaire
+              Saveurs Authentiques
             </span>
             <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-semibold text-espresso-foreground mb-6">
               Notre Menu
             </h1>
             <p className="text-espresso-foreground/70 max-w-2xl mx-auto">
-              Une célébration des ingrédients de saison, des techniques raffinées et 
-              de la présentation artistique. Chaque plat raconte une histoire de passion et de précision.
+              Une célébration authentique de la cuisine béninoise et africaine. Chaque plat raconte 
+              une histoire de tradition, de générosité et de saveurs incontournables.
             </p>
           </motion.div>
         </div>
@@ -130,7 +130,7 @@ const Menu = () => {
                   <AnimatedSection key={item.name} delay={index * 0.05}>
                     <motion.div
                       whileHover={{ x: 4 }}
-                      className={`flex gap-6 ${item.image ? 'items-start' : 'items-center'} py-4 border-b border-border/50`}
+                      className={`flex gap-6 items-start py-4 border-b border-border/50`}
                     >
                       {item.image && (
                         <div className="w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden flex-shrink-0">
@@ -145,7 +145,7 @@ const Menu = () => {
                         <div className="flex justify-between items-start gap-4 mb-2">
                           <h3 className="font-display text-xl md:text-2xl">{item.name}</h3>
                           <span className="text-primary font-display text-xl md:text-2xl flex-shrink-0">
-                            {item.price}€
+                            {item.price} FCFA
                           </span>
                         </div>
                         <p className="text-muted-foreground text-sm md:text-base">
@@ -158,17 +158,6 @@ const Menu = () => {
               </div>
             </motion.div>
           </AnimatePresence>
-
-          <AnimatedSection delay={0.3}>
-            <div className="text-center mt-16 pt-8 border-t border-border">
-              <p className="text-muted-foreground text-sm mb-2">
-                Tous les prix sont en euros. Les prix n'incluent pas les taxes et le service.
-              </p>
-              <p className="text-muted-foreground text-sm">
-                Veuillez informer votre serveur de toute allergie ou restriction alimentaire.
-              </p>
-            </div>
-          </AnimatedSection>
         </div>
       </section>
     </Layout>

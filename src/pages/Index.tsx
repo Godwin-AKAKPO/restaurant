@@ -93,7 +93,7 @@ const Index = () => {
                 to="/reservation"
                 className="btn-primary px-8 py-4 rounded-md font-medium text-sm uppercase tracking-widest"
               >
-                Réserver une Table
+                Passer une commande
               </Link>
               <Link
                 to="/menu"
@@ -254,19 +254,19 @@ const Index = () => {
               <span className="text-primary font-medium text-sm uppercase tracking-[0.2em] mb-4 inline-block">
                 Vivez l'Expérience La Maison
               </span>
-              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold mb-6">
-                Réservez Votre Table Aujourd'hui
-              </h2>
-              <p className="text-muted-foreground mb-8">
+                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-semibold mb-6">
+                Passez Votre Commande Aujourd'hui
+                </h2>
+                <p className="text-muted-foreground mb-8">
                 Rejoignez-nous pour une expérience gastronomique inoubliable. Notre équipe 
                 est prête à rendre votre soirée vraiment spéciale.
-              </p>
-              <Link
+                </p>
+                <Link
                 to="/reservation"
                 className="btn-primary inline-block px-10 py-4 rounded-md font-medium text-sm uppercase tracking-widest"
-              >
-                Faire une Réservation
-              </Link>
+                >
+                Passer une Commande
+                </Link>
             </div>
           </AnimatedSection>
         </div>
