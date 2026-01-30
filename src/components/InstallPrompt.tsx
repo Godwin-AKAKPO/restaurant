@@ -5,24 +5,22 @@ interface InstallPromptProps {
 
 export default function InstallPrompt({ onInstall, onDismiss }: InstallPromptProps) {
   return (
-    <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg shadow-lg p-4 flex items-center justify-between gap-4 max-w-md">
-      <div className="flex items-center gap-3">
-        <div className="text-2xl">📱</div>
-        <div>
-          <h3 className="font-semibold text-slate-900 dark:text-white">Installer La Maison</h3>
-          <p className="text-sm text-slate-600 dark:text-slate-400">Accédez à votre restaurant en un clic</p>
-        </div>
+    <div className="fixed bottom-4 right-4 bg-gradient-to-br from-cream to-cream/90 dark:from-espresso dark:to-espresso/90 rounded-2xl shadow-2xl p-6 flex items-center gap-6 max-w-sm border-2 border-primary/20 dark:border-primary/30 backdrop-blur-sm">
+      <div className="flex-shrink-0 text-4xl animate-bounce">📱</div>
+      <div className="flex-1">
+        <h3 className="font-bold text-espresso dark:text-cream text-lg mb-1">Installer La Maison</h3>
+        <p className="text-sm text-espresso/70 dark:text-cream/70">Accédez rapidement à votre restaurant</p>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-3 flex-shrink-0">
         <button
           onClick={onInstall}
-          className="px-3 py-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded text-sm font-medium hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors"
+          className="px-4 py-2 bg-gradient-to-r from-primary to-primary/80 text-cream hover:from-primary/90 hover:to-primary rounded-xl text-sm font-semibold transition-all shadow-lg hover:shadow-xl hover:scale-105"
         >
           Installer
         </button>
         <button
           onClick={onDismiss}
-          className="px-3 py-1 text-slate-600 dark:text-slate-400 text-sm hover:text-slate-900 dark:hover:text-white transition-colors"
+          className="px-4 py-2 bg-espresso/10 dark:bg-cream/10 hover:bg-espresso/20 dark:hover:bg-cream/20 text-espresso dark:text-cream rounded-xl text-sm font-medium transition-colors border border-espresso/20 dark:border-cream/20"
         >
           Plus tard
         </button>
