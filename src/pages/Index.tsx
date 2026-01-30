@@ -28,9 +28,9 @@ const Index = () => {
   ];
 
   const signatureDishes = [
-    { name: 'Foie Gras Poêlé', description: 'Poire caramélisée et balsamique vieilli', image: dish1 },
-    { name: 'Homard au Beurre', description: 'Risotto au safran et émulsion corail', image: dish2 },
-    { name: 'Sphère Chocolat Valrhona', description: 'Feuille d\'or et caramel au beurre salé', image: dish3 },
+    { name: 'Salade de Fruits', description: 'Fruits frais de saison, poire caramélisée et vinaigre balsamique vieilli', image: dish1 },
+    { name: 'Pirons rouge', description: 'Faites à base de farine de manioc et unn ensemble d\'ingrédients d \'élicieux', image: dish2 },
+    { name: 'Igname Pilé', description: 'Purée d\'igname onctueuse, décorée à la feuille d\'or et caramel au beurre salé', image: dish3 },
   ];
 
   return (
@@ -106,24 +106,7 @@ const Index = () => {
         </motion.div>
 
         {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-espresso-foreground/50 rounded-full flex justify-center pt-2"
-          >
-            <motion.div
-              animate={{ opacity: [1, 0, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1.5 h-1.5 rounded-full bg-primary"
-            />
-          </motion.div>
-        </motion.div>
+     
       </section>
 
       {/* Features */}
@@ -155,16 +138,7 @@ const Index = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                  className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground p-6 rounded-lg"
-                >
-                  <p className="font-display text-4xl font-semibold">25+</p>
-                  <p className="text-sm uppercase tracking-wider">Années d'Excellence</p>
-                </motion.div>
+               
               </div>
             </AnimatedSection>
 

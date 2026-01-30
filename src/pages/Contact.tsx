@@ -110,12 +110,12 @@ const Contact = () => {
                     Visitez La Maison
                   </h2>
                   <p className="text-muted-foreground mb-8">
-                    Situé au cœur de Paris, La Maison offre une évasion élégante 
+                    Situé au cœur de Calavi, La Maison offre une évasion élégante 
                     pour les gourmets à la recherche d'une expérience culinaire extraordinaire.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">  
                   {contactInfo.map((item, index) => (
                     <motion.div
                       key={item.title}
@@ -229,7 +229,7 @@ const Contact = () => {
       {/* Map Section */}
       <section className="h-[400px] md:h-[500px]">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.2158746132895!2d2.2944813!3d48.8698305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fc4f8f3049b%3A0x5f5f30a4a8d2c3b!2sChamps-%C3%89lys%C3%A9es%2C%20Paris!5e0!3m2!1sfr!2sfr!4v1650000000000!5m2!1sfr!2sfr"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.8289142147387!2d2.3438359762913072!3d6.41602392440029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1024a91115ac469b%3A0x56cac2a9ba7e37f4!2sUAC!5e0!3m2!1sfr!2sbj!4v1769784312672!5m2!1sfr!2sbj"
           width="100%"
           height="100%"
           style={{ border: 0 }}
