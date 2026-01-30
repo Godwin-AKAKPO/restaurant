@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { useInstallPrompt } from "@/hooks/useInstallPrompt";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Menu from "./pages/Menu";
@@ -17,6 +18,7 @@ const queryClient = new QueryClient();
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+  useInstallPrompt();
   
   return (
     <AnimatePresence mode="wait">
