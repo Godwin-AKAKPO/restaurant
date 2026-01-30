@@ -7,6 +7,8 @@ interface BeforeInstallPromptEvent extends Event {
   userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
 }
 
+let hasShownPrompt = false;
+
 export const useInstallPrompt = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
@@ -17,6 +19,9 @@ export const useInstallPrompt = () => {
       const event = e as BeforeInstallPromptEvent;
       setDeferredPrompt(event);
       setShowInstallPrompt(true);
+
+      // Réinitialiser le flag pour afficher la notification à chaque visite
+      hasShownPrompt = false;
 
       // Afficher la notification
       toast.custom(
@@ -50,6 +55,17 @@ export const useInstallPrompt = () => {
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    // Optionnel : déclencher manuellement si l'événement n'est pas disponible
+    // Cela peut arriver si l'app est déjà installable mais que l'événement a déjà été tiré
+    const checkInstallability = () => {
+      // Vérifier si le navigateur supporte l'API
+      if ('beforeinstallprompt' in window && !hasShownPrompt) {
+        // L'événement será déclenché automatiquement par le navigateur
+      }
+    };
+
+    checkInstallability();
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
